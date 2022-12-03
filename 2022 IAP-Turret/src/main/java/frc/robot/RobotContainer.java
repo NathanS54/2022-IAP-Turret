@@ -47,4 +47,12 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
+
+public static Object getJoy1() {
+    return null;
+}
+
+public static Object getJoy2() {
+  return null;
+}
 }
