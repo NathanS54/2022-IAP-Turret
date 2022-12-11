@@ -5,9 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ProtoTurret;
+import frc.robot.commands.SpintoTurret;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.PhotonVision;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -17,19 +22,38 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+  private final PhotonVision photon;
+    private final DriveTrain dt;
+  
+    public static Joystick joystick1;
+    public static Joystick joystick2;
+  
+    private final SpintoTurret spin;
+    private final ProtoTurret proto;
  
 
-  // The robot's subsystems and commands are defined here...
+  // robot subsystems are defined here
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    photon = new PhotonVision();
+
+    joystick1 = new Joystick(0);
+    joystick2 = new Joystick(1);
+    dt = new DriveTrain();
+
+    spin = new SpintoTurret(dt, photon);
+    proto = new ProtoTurret(dt, photon);
     // Configure the button bindings
     configureButtonBindings();
-  }
-
+  
+    
+      
+    }
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -48,11 +72,11 @@ public class RobotContainer {
     return m_autoCommand;
   }
 
-public static Object getJoy1() {
-    return null;
+public static Joystick getJoy1() {
+    return joystick1;
 }
 
-public static Object getJoy2() {
-  return null;
+public static Joystick getJoy2() {
+  return joystick2;
 }
 }

@@ -20,5 +20,10 @@ public final class Constants {
             public static final int RightDriveVictorPort = 5;
     }
 
+    public static final String DriveTrainConstants = null;
+    
+    public static final class MotorPorts{
+        public static final int TurretPort = 4;
+    }
 }
 
