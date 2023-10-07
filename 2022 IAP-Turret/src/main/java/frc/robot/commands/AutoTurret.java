@@ -28,7 +28,7 @@ public class AutoTurret extends CommandBase {
     this.photon = photon;
     this.turret = turret;
     manualTimer = new Timer();
-    pid = new PIDController(0.0, 0.0, 0.0);
+    pid = new PIDController(0.016, 0.0, 0.0005);
   }
 
   // Called when the command is initially scheduled.
